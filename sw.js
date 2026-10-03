@@ -1,5 +1,5 @@
-const CACHE='gearstore-shell-v4';
-const CATS=['shells','down','fleece','base-layers','gloves','hats','footwear','bags','tents','sleeping','cooking','hydration','first-aid','navigation','equipment','other'];
+const CACHE='gearstore-shell-v5';
+const CATS=['shells','down','fleece','base-layers','legwear','gloves','hats','footwear','bags','tents','sleeping','cooking','hydration','first-aid','navigation','equipment','other'];
 const SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.PNG',...CATS.map(c=>'icons/'+c+'.webp')];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.all(SHELL.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
