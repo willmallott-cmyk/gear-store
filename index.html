@@ -25,8 +25,8 @@ input,select,textarea{width:100%;padding:11px;border:1px solid var(--ln);border-
 .empty{text-align:center;padding:28px 10px;color:var(--mu)}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 12px;margin-top:6px}@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr);gap:30px 22px}}
 .bk{text-decoration:none;color:var(--tx);text-align:center;display:block;-webkit-tap-highlight-color:transparent}
-.circ{aspect-ratio:1;border-radius:50%;background:var(--circ);display:grid;place-items:center;border:1px solid transparent;transition:border-color .15s}.bk:active .circ,.bk:hover .circ{border-color:var(--ac)}
-.circ svg{width:62%;height:62%}.bk b{display:block;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}.bk .s{display:block;margin-top:2px}
+.circ{aspect-ratio:1;border-radius:50%;background:var(--circ);overflow:hidden;box-shadow:0 0 0 2px transparent;transition:box-shadow .15s}.bk:active .circ,.bk:hover .circ{box-shadow:0 0 0 2px var(--ac)}
+.circ img{width:100%;height:100%;display:block;border-radius:50%}.bk b{display:block;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}.bk .s{display:block;margin-top:2px}
 .bk.has .s{color:var(--ac)}
 .back{display:inline-block;color:var(--ac);text-decoration:none;margin:4px 0}
 .sheet{background:#fff;color:#000;border:1px solid var(--ln);padding:22px;border-radius:6px;max-width:210mm;margin:12px auto}.sheet h2{margin:0;font-size:26px;letter-spacing:.04em}.sheet h4{margin:18px 0 6px;font-size:13px;letter-spacing:.12em;border-bottom:1.5px solid #000;padding-bottom:3px}
@@ -55,26 +55,8 @@ save(d){localStorage.setItem(this.K,JSON.stringify(d))}};
 let S=Store.load();const save=()=>Store.save(S);
 const nm=i=>((i.brand?i.brand+' ':'')+i.model).trim();
 
-/* ---------- icons ---------- */
-const jk=(c,x)=>`<path d="M22 8l-14 6 4 22 7-2v22h26V34l7 2 4-22-14-6c-2 6-14 6-16 0z" fill="${c}"/><path d="M32 14v44" stroke="#1f3354" stroke-width="1.6"/>${x||''}`;
-const IC={
-'shells':jk('#2f7fd0','<path d="M18 46h5M41 46h5" stroke="#1f3354" stroke-width="2"/>'),
-'down':jk('#2b3140','<path d="M17 24h30M17 34h30M17 44h30" stroke="#59627a" stroke-width="2"/><path d="M18 50v4M46 50v4" stroke="#ec7a2c" stroke-width="2.4"/>'),
-'fleece':jk('#4d6b3a','<rect x="36" y="38" width="9" height="7" rx="2" fill="#3c542d"/>'),
-'base-layers':'<path d="M22 8h20l15 11-5 14-6-3v26H18V30l-6 3-5-14z" fill="#efe6d2" stroke="#cbbf9f" stroke-width="1.5"/>',
-'gloves':'<g fill="#2b3140"><path d="M10 54V34l-3-8 4-1 3 6V14a2 2 0 014 0v14V11a2 2 0 014 0v17V14a2 2 0 014 0v22l3-4 3 2-6 14v10z"/><path transform="translate(26 0)" d="M10 54V34l-3-8 4-1 3 6V14a2 2 0 014 0v14V11a2 2 0 014 0v17V14a2 2 0 014 0v22l3-4 3 2-6 14v10z"/></g>',
-'hats':'<path d="M14 40a18 18 0 0136 0z" fill="#2a5ea8"/><rect x="12" y="39" width="40" height="11" rx="3" fill="#224d8c"/><path d="M24 22v17M32 19v20M40 22v17" stroke="#4a7fc4" stroke-width="1.6"/>',
-'footwear':'<path d="M14 10h15v17l19 8c5 2 8 5 8 10v5H10z" fill="#6b5a43"/><rect x="10" y="48" width="46" height="6" rx="3" fill="#8b8f93"/><path d="M29 24l8 4M27 30l9 4" stroke="#ec7a2c" stroke-width="2.2"/>',
-'bags':'<rect x="15" y="8" width="34" height="48" rx="13" fill="#2a6a93"/><rect x="21" y="34" width="22" height="16" rx="4" fill="#1f5273"/><path d="M24 8v-2h16v2M12 22v22M52 22v22" stroke="#1f3354" stroke-width="2.4" stroke-linecap="round"/>',
-'tents':'<path d="M5 52L32 11l27 41z" fill="#5d7a3d"/><path d="M32 11l-10 41h20z" fill="#3f5a28"/><path d="M5 52l27-41M59 52L32 11" stroke="#ec7a2c" stroke-width="1.6" fill="none"/>',
-'sleeping':'<rect x="20" y="5" width="24" height="54" rx="12" fill="#2f7fd0"/><path d="M22 20h20M22 32h20M22 44h20" stroke="#1f5fa8" stroke-width="2"/>',
-'cooking':'<rect x="14" y="10" width="36" height="20" rx="3" fill="#3d424d"/><rect x="50" y="15" width="10" height="4" rx="2" fill="#ec7a2c"/><path d="M24 32h16l-4 6h-8z" fill="#59627a"/><rect x="23" y="38" width="18" height="18" rx="4" fill="#ec7a2c"/>',
-'hydration':'<rect x="22" y="5" width="16" height="9" rx="2" fill="#2b3140"/><rect x="21" y="14" width="22" height="46" rx="7" fill="#3b86a8"/><path d="M28 36l4-6 4 6z" fill="#fff"/>',
-'first-aid':'<rect x="8" y="16" width="48" height="36" rx="7" fill="#d8392b"/><path d="M26 22h12v10h10v10H38v10H26V42H16V32h10z" fill="#fff" transform="translate(0 -4) scale(1 .95) translate(0 3)"/><path d="M24 16v-4h16v4" stroke="#a82b20" stroke-width="3" fill="none"/>',
-'navigation':'<rect x="18" y="4" width="28" height="56" rx="7" fill="#ec7a2c"/><rect x="22" y="12" width="20" height="26" rx="3" fill="#cfe0d4"/><path d="M24 30c6-8 10-2 16-10" stroke="#6f9a7e" stroke-width="1.6" fill="none"/><circle cx="32" cy="48" r="4" fill="#2b3140"/>',
-'equipment':'<path d="M32 14v42" stroke="#1f3354" stroke-width="4" stroke-linecap="round"/><path d="M10 20c10-10 34-10 44 0l-7 2c-8-5-22-5-30 0z" fill="#2b3140"/><path d="M32 38v14" stroke="#ec7a2c" stroke-width="6" stroke-linecap="round"/><path d="M32 56l-3-2h6z" fill="#1f3354"/>',
-'other':'<rect x="8" y="12" width="48" height="16" rx="7" fill="#2b3140"/><rect x="36" y="15" width="16" height="10" rx="4" fill="#cdd5dd"/><rect x="22" y="34" width="20" height="24" rx="9" fill="none" stroke="#7f8896" stroke-width="4"/><path d="M22 46h20" stroke="#ec7a2c" stroke-width="4"/>'};
-const svg=c=>`<svg viewBox="0 0 64 64" aria-hidden="true">${IC[slug(c)]}</svg>`;
+/* ---------- icons: illustrated images in /icons ---------- */
+const svg=c=>`<img src="icons/${slug(c)}.webp" alt="" decoding="async">`;
 
 /* ---------- trip logic (unchanged behaviour) ---------- */
 const STOP=new Set('a an the and or for with of to in on your you be that must can is are at as pair set thin thick warm light lightweight heavyweight strong small smaller good spare extra sturdy'.split(' '));
@@ -129,7 +111,7 @@ return `<h1>Gear Wall<button class="p" data-a="go" data-h="/add">Add gear</butto
 <div class="grid">${CATS.map(c=>`<a class="bk ${n(c)?'has':''}" href="#/cat/${slug(c)}"><div class="circ">${svg(c)}</div><b>${c}</b><span class="s">${n(c)?n(c)+(n(c)==1?' item':' items'):'Empty'}</span></a>`).join('')}</div>`+
 (S.inventory.length?'':`<div class="empty"><b>Your Gear Wall is empty</b><p>Import a CSV of what you own, or add items one at a time.</p><button class="p" data-a="go" data-h="/import">Import CSV</button> <button data-a="go" data-h="/add">Add one item</button></div>`)+FT}
 function catV(s){const c=bySlug(s);if(!c)return wallV();const l=S.inventory.filter(i=>i.category==c).sort((a,b)=>nm(a).localeCompare(nm(b)));
-return `<a class="back" href="#/wall">‹ Gear Wall</a><h1><span style="gap:12px"><span style="width:44px">${svg(c)}</span>${c}</span><button class="p" data-a="go" data-h="/add/${s}">Add</button></h1>`+
+return `<a class="back" href="#/wall">‹ Gear Wall</a><h1><span style="gap:12px"><span style="width:48px;height:48px;border-radius:50%;overflow:hidden">${svg(c)}</span>${c}</span><button class="p" data-a="go" data-h="/add/${s}">Add</button></h1>`+
 (l.length?`<div class="c">${l.map(i=>`<div class="r" data-a="go" data-h="/item/${i.id}" style="cursor:pointer"><div><div class="s">${esc(i.brand)||'No brand'}</div><b style="font-weight:600">${esc(i.model)}</b><div class="s">${i.category}</div></div><span class="s">${i.g?fmt(kg(i.g)):''}</span><span class="s">›</span></div>`).join('')}</div>`:`<div class="empty"><b>Nothing in ${c} yet</b><p>Add an item or import a CSV.</p></div>`)+FT}
 function itemV(id,cs){const i=id?S.inventory.find(x=>x.id==id):null;if(id&&!i)return wallV();const cat=i?i.category:(bySlug(cs)||'Other');
 return `<a class="back" href="#/${i?'cat/'+slug(i.category):cs?'cat/'+cs:'wall'}">‹ Back</a><h1>${i?'Edit gear':'Add gear'}</h1><div class="c" style="padding:12px"><label class="s">Brand</label><input id="b" value="${esc(i?.brand)}"><label class="s">Model</label><input id="m" value="${esc(i?.model)}"><label class="s">Category</label><select id="c">${CATS.map(c=>`<option ${c==cat?'selected':''}>${c}</option>`).join('')}</select><label class="s">Weight in grams (optional)</label><input id="g" type="number" inputmode="numeric" value="${i?.g||''}"></div>
