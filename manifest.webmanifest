@@ -1,6 +1,6 @@
 {
-  "name": "Gear Store",
-  "short_name": "Gear Store",
+  "name": "Gear Bag",
+  "short_name": "Gear Bag",
   "description": "Your outdoor gear inventory and trip kit lists.",
   "start_url": "./",
   "scope": "./",
