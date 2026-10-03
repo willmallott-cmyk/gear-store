@@ -38,16 +38,17 @@ input,select,textarea{width:100%;padding:11px;border:1px solid var(--ln);border-
 const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,9),now=()=>new Date().toISOString();
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const TERMS='2026-10-v1';
-const CATS=['Shells','Down','Fleece','Base Layers','Legwear','Gloves','Hats','Footwear','Bags','Tents','Sleeping','Cooking','Hydration','First Aid','Navigation','Equipment','Other'];
-const slug=c=>c.toLowerCase().replace(/ /g,'-'),bySlug=s=>CATS.find(c=>slug(c)==s);
+const CATS=['Shells','Down','Fleece','Base Layers','Legwear','Hats & Gloves','Footwear','Bags','Tents','Sleeping','Cooking','Hydration','Safety','Navigation','Equipment','Other'];
+const slug=c=>c.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),bySlug=s=>CATS.find(c=>slug(c)==s);
 const norm=s=>String(s).toLowerCase().replace(/[^a-z]/g,'').replace(/s$/,'');
-const CMAP=Object.fromEntries(CATS.map(c=>[norm(c),c]));
+const CMAP=Object.fromEntries(CATS.map(c=>[norm(c),c]));Object.assign(CMAP,{hat:'Hats & Gloves',glove:'Hats & Gloves',hatsandglove:'Hats & Gloves',firstaid:'Safety'});
+const OLDCAT={'Hats':'Hats & Gloves','Gloves':'Hats & Gloves','First Aid':'Safety'};
 function guess(t){t=String(t).toLowerCase();const h=r=>r.test(t);
-return h(/trouser|pants|shorts|tights|legging|salopette|\bbibs?\b/)?'Legwear':h(/sleeping|bivi|liner|quilt/)?'Sleeping':h(/\bdown\b|puffa|puffer|insulated/)?'Down':h(/shell|waterproof|gore-?tex|rain/)?'Shells':h(/fleece/)?'Fleece':h(/base ?layer|thermal|merino/)?'Base Layers':h(/glove|mitt/)?'Gloves':h(/\bhat\b|beanie|\bcap\b|buff|balaclava/)?'Hats':h(/boot|shoe|sock|gaiter|trainer/)?'Footwear':h(/tent|tarp|bivvy/)?'Tents':h(/stove|\bpot\b|cook|\bmug\b/)?'Cooking':h(/bottle|bladder|hydration|flask/)?'Hydration':h(/first aid|plaster|blister/)?'First Aid':h(/gps|compass|\bmap\b|navigation/)?'Navigation':h(/ice axe|crampon|harness|helmet|rope|\baxe\b/)?'Equipment':h(/rucksack|backpack|duffle|hold-?all|\bpack\b|\bbag\b/)?'Bags':'Other'}
+return h(/trouser|pants|shorts|tights|legging|salopette|\bbibs?\b/)?'Legwear':h(/sleeping|bivi|liner|quilt/)?'Sleeping':h(/\bdown\b|puffa|puffer|insulated/)?'Down':h(/shell|waterproof|gore-?tex|rain/)?'Shells':h(/fleece/)?'Fleece':h(/base ?layer|thermal|merino/)?'Base Layers':h(/glove|mitt|\bhat\b|beanie|\bcap\b|buff|balaclava/)?'Hats & Gloves':h(/boot|shoe|sock|gaiter|trainer/)?'Footwear':h(/tent|tarp|bivvy/)?'Tents':h(/stove|\bpot\b|cook|\bmug\b/)?'Cooking':h(/bottle|bladder|hydration|flask/)?'Hydration':h(/first aid|plaster|blister|whistle|emergency|survival/)?'Safety':h(/gps|compass|\bmap\b|navigation/)?'Navigation':h(/ice axe|crampon|harness|helmet|rope|\baxe\b/)?'Equipment':h(/rucksack|backpack|duffle|hold-?all|\bpack\b|\bbag\b/)?'Bags':'Other'}
 
 /* ---------- storage layer (swap this for a cloud store later) ---------- */
 const Store={K:'gearstore.v2',OLD:'gearstore.v1',
-load(){let d=null;try{d=JSON.parse(localStorage.getItem(this.K))}catch(e){}if(d&&d.v==2)return d;
+load(){let d=null;try{d=JSON.parse(localStorage.getItem(this.K))}catch(e){}if(d&&d.v==2){let ch=0;(d.inventory||[]).forEach(i=>{if(OLDCAT[i.category]){i.category=OLDCAT[i.category];ch=1}});if(ch)this.save(d);return d}
 try{const o=JSON.parse(localStorage.getItem(this.OLD));if(o)return this.migrate(o)}catch(e){}
 return{v:2,inventory:[],trips:[],settings:{terms:'',termsDate:''}}},
 migrate(o){const t=now();const d={v:2,inventory:(o.gear||[]).map(g=>({id:g.id,model:g.name,brand:'',category:guess(g.name),g:g.g||null,created_at:t,updated_at:t})),trips:(o.trips||[]),settings:{terms:o.terms||'',termsDate:o.termsDate||''}};localStorage.setItem(this.K,JSON.stringify(d));return d},
@@ -61,8 +62,9 @@ const svg=c=>`<img src="icons/${slug(c)}.webp" alt="" decoding="async">`;
 /* ---------- trip logic (unchanged behaviour) ---------- */
 const STOP=new Set('a an the and or for with of to in on your you be that must can is are at as pair set thin thick warm light lightweight heavyweight strong small smaller good spare extra sturdy'.split(' '));
 const tok=t=>new Set(String(t).toLowerCase().split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(w=>w.length>3&&w.endsWith('s')?w.slice(0,-1):w));
-const SYN={Shells:'waterproof jacket shell',Down:'insulated jacket down puffa synthetic',Fleece:'fleece',"Base Layers":'base layer thermal',Legwear:'trousers walking pants',Gloves:'glove mitt',Hats:'hat',Footwear:'boot walking hiking',Bags:'rucksack backpack day pack duffle hold-all',Tents:'tent',Sleeping:'sleeping bag',Cooking:'stove cooking',Hydration:'water bottle bladder',"First Aid":'first aid kit',Navigation:'map compass gps'};
-const hit=(g,r)=>{const gt=tok(nm(g)+' '+(SYN[g.category]||''));return r.alts.some(a=>{const w=tok(a);if(!w.size)return 0;let n=0;w.forEach(x=>gt.has(x)&&n++);return n/w.size>=.6||(w.size==1&&n==1)})};
+const SYN={Shells:'waterproof jacket shell',Down:'insulated jacket down puffa synthetic',Fleece:'fleece',"Base Layers":'base layer thermal',Legwear:'trousers walking pants',Footwear:'boot walking hiking',Bags:'rucksack backpack day pack duffle hold-all',Tents:'tent',Sleeping:'sleeping bag',Cooking:'stove cooking',Hydration:'water bottle bladder',Safety:'first aid kit',Navigation:'map compass gps'};
+const synOf=g=>{if(g.category!='Hats & Gloves')return SYN[g.category]||'';const n=nm(g),gl=/glove|mitt/i.test(n),ht=/hat|beanie|cap|buff|balaclava/i.test(n);return gl&&!ht?'glove mitt':ht&&!gl?'hat beanie':'glove mitt hat beanie'};
+const hit=(g,r)=>{const gt=tok(nm(g)+' '+synOf(g));return r.alts.some(a=>{const w=tok(a);if(!w.size)return 0;let n=0;w.forEach(x=>gt.has(x)&&n++);return n/w.size>=.6||(w.size==1&&n==1)})};
 const kg=g=>(g||0)/1000,fmt=n=>n.toFixed(1)+' kg';
 const FT='<p class="ft">Suggestions only. Always check the organiser\'s own list and don\'t rely on this app for your safety. Your data is stored only in this browser on this device; it is not backed up or synced.</p>';
 function alts(t){const n=t.replace(/\([^)]*\)/g,'').trim();if(n.includes(' / ')){const p=n.split(' / ').map(s=>s.trim()).filter(Boolean);if(p.length>1)return p}const o=n.split(' or ');if(o.length==2&&o.every(s=>s.split(' ').length<=2))return o;return[n||t]}
