@@ -42,7 +42,7 @@ input,select,textarea{width:100%;padding:11px;border:1px solid var(--ln);border-
 const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,9),now=()=>new Date().toISOString();
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const TERMS='2026-10-v1';
-const CATS=['Shells','Down','Fleece','Base Layers','Legwear','Hats & Gloves','Footwear','Bags','Tents','Sleeping','Cooking','Hydration','Safety','Navigation & Lighting','Equipment','Other'];
+const CATS=['Shells','Down','Fleece','Base Layers','Legwear','Hats & Gloves','Footwear','Bags','Equipment','Tents','Sleeping','Cooking','Hydration','Navigation & Lighting','Safety','Other'];
 const slug=c=>c.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),bySlug=s=>CATS.find(c=>slug(c)==s);
 const norm=s=>String(s).toLowerCase().replace(/[^a-z]/g,'').replace(/s$/,'');
 const CMAP=Object.fromEntries(CATS.map(c=>[norm(c),c]));Object.assign(CMAP,{hat:'Hats & Gloves',glove:'Hats & Gloves',hatsandglove:'Hats & Gloves',firstaid:'Safety',navigation:'Navigation & Lighting',lighting:'Navigation & Lighting',light:'Navigation & Lighting',navigationlighting:'Navigation & Lighting',navigationandlighting:'Navigation & Lighting'});
