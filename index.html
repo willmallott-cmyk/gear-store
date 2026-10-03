@@ -2,47 +2,87 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Gear Store</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.PNG">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Gear Store"><meta name="theme-color" content="#25465c">
+<meta name="apple-mobile-web-app-title" content="Gear Store"><meta name="theme-color" content="#f7f7f4">
 <style>
-:root{--bg:#f4f5f7;--cd:#fff;--tx:#1b1f23;--mu:#6b7280;--ln:#e3e6ea;--ac:#c9631a;--acb:#fdeee0;--ok:#1f8a4c;--wn:#b45309;--wnb:#fef3c7;--bad:#c62828;--pri:#25465c;--on:#fff}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1418;--cd:#1a2127;--tx:#eef1f4;--mu:#97a1ab;--ln:#2a333b;--ac:#f0954a;--acb:#3a2a1c;--ok:#4cc78b;--wn:#f2b24c;--wnb:#3a2f14;--bad:#ff7a73;--pri:#e8833a;--on:#111}}
+:root{--bg:#f7f7f4;--cd:#fff;--tx:#1f3354;--mu:#66738a;--ln:#dfe5ea;--circ:#dce9f1;--ac:#e8731c;--acb:#fdeee0;--ok:#1f8a4c;--wn:#b45309;--wnb:#fef3c7;--bad:#c62828;--pri:#1f3354;--on:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1620;--cd:#162130;--tx:#eaf0f6;--mu:#9aa8ba;--ln:#263548;--circ:#1f3044;--ac:#f0954a;--acb:#3a2a1c;--ok:#4cc78b;--wn:#f2b24c;--wnb:#3a2f14;--bad:#ff7a73;--pri:#eaf0f6;--on:#0f1620}}
 *{box-sizing:border-box}body{margin:0;font:16px/1.4 -apple-system,system-ui,sans-serif;background:var(--bg);color:var(--tx);padding-top:env(safe-area-inset-top)}
-#app{max-width:640px;margin:auto;padding:12px 14px calc(84px + env(safe-area-inset-bottom))}
-h1{font-size:24px;margin:6px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}h1 span{display:flex;gap:8px}
-h3{font-size:12px;color:var(--mu);font-weight:600;margin:18px 0 6px;text-transform:uppercase;letter-spacing:.04em}
-.c{background:var(--cd);border:1px solid var(--ln);border-radius:12px;overflow:hidden}.r{display:flex;gap:10px;align-items:center;padding:11px 12px;border-top:1px solid var(--ln)}.r:first-child{border-top:0}.r>div{flex:1;min-width:0}
+#app{max-width:640px;margin:auto;padding:12px 16px calc(88px + env(safe-area-inset-bottom))}#app.wide{max-width:960px}
+h1{font-size:26px;margin:8px 0 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;letter-spacing:-.01em}h1 span{display:flex;gap:8px}
+h3{font-size:12px;color:var(--mu);font-weight:600;margin:20px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.c{background:var(--cd);border:1px solid var(--ln);border-radius:12px;overflow:hidden}.r{display:flex;gap:10px;align-items:center;padding:12px;border-top:1px solid var(--ln);min-height:48px}.r:first-child{border-top:0}.r>div{flex:1;min-width:0}
 .s{font-size:12px;color:var(--mu)}.w{color:var(--wn)}.b{color:var(--bad)}.o{color:var(--ok)}
-button,select,input,textarea{font:inherit;color:var(--tx)}button{min-height:36px;padding:0 12px;border-radius:9px;border:1px solid var(--ln);background:var(--cd);cursor:pointer}
-button.p{background:var(--pri);color:var(--on);border:0;font-weight:600}button.l{border:0;background:none;color:var(--ac);padding:0 6px}button.big{width:100%;min-height:46px;margin-top:14px}
-input,select,textarea{width:100%;padding:10px;border:1px solid var(--ln);border-radius:9px;background:var(--cd);margin:4px 0}textarea{min-height:150px}
+button,select,input,textarea{font:inherit;color:var(--tx)}button{min-height:44px;padding:0 14px;border-radius:10px;border:1px solid var(--ln);background:var(--cd);cursor:pointer}
+button.p{background:var(--pri);color:var(--on);border:0;font-weight:600}button.l{border:0;background:none;color:var(--ac);padding:0 6px;min-height:36px}button.big{width:100%;min-height:48px;margin-top:12px}button:disabled{opacity:.4}
+input,select,textarea{width:100%;padding:11px;border:1px solid var(--ln);border-radius:10px;background:var(--cd);margin:4px 0}textarea{min-height:120px}
 .bar{height:7px;background:var(--ln);border-radius:4px;overflow:hidden;margin:8px 0 4px}.bar i{display:block;height:100%;background:var(--pri)}
 .seg{display:flex;gap:6px;margin:8px 0}.seg button{flex:1}.seg .on{background:var(--acb);border-color:var(--ac);color:var(--ac);font-weight:600}
-.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}.tabs a{flex:1;text-align:center;padding:10px 0;color:var(--mu);text-decoration:none;font-size:12px}.tabs a.on{color:var(--ac);font-weight:600}
-.warn{background:var(--wnb);color:var(--wn);padding:9px 12px;border-radius:9px;font-size:14px;margin-bottom:8px}.ft{font-size:12px;color:var(--mu);text-align:center;margin:16px 6px}
-.ck{width:24px;height:24px;border:2px solid var(--mu);border-radius:7px;flex:none;display:flex;align-items:center;justify-content:center}.ck.on{background:var(--ok);border-color:var(--ok);color:#fff}
-.empty{text-align:center;padding:40px 10px;color:var(--mu)}
-.wall{background:var(--cd);background-image:radial-gradient(var(--ln) 1.6px,transparent 1.7px);background-size:20px 20px;border:1px solid var(--ln);border-radius:14px;padding:24px 14px 18px}
-.wg{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 14px}.wg.k{grid-template-columns:repeat(2,1fr)}
-.slot{position:relative;text-align:center;cursor:pointer;padding-top:14px}.slot .hook{position:absolute;top:0;left:50%;width:10px;height:10px;margin-left:-5px;border:2px solid var(--mu);border-radius:50%;border-bottom-color:transparent}
-.slot svg{width:46px;height:46px;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.slot.own{color:var(--ac)}.slot.own svg path{fill:currentColor;fill-opacity:.25}.slot.gap{color:var(--wn)}.slot.gap svg path{fill:currentColor}.slot.empty{color:var(--mu)}.slot.empty svg{stroke-dasharray:3 2.5;opacity:.65}
-.slot b{display:block;font-size:12px;color:var(--tx);margin-top:4px}.slot.sel b{text-decoration:underline}
-.tub{border:1px solid var(--ln);border-top:7px solid var(--mu);border-radius:5px 5px 16px 16px;background:var(--bg);padding:12px 6px 10px}.tub .hook{display:none}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}.tabs a{flex:1;text-align:center;padding:13px 0;color:var(--mu);text-decoration:none;font-size:13px}.tabs a.on{color:var(--ac);font-weight:600}
+.warn{background:var(--wnb);color:var(--wn);padding:9px 12px;border-radius:10px;font-size:14px;margin-bottom:8px}.ft{font-size:12px;color:var(--mu);text-align:center;margin:18px 6px}
+.ck{width:26px;height:26px;border:2px solid var(--mu);border-radius:7px;flex:none;display:flex;align-items:center;justify-content:center}.ck.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.empty{text-align:center;padding:28px 10px;color:var(--mu)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 12px;margin-top:6px}@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr);gap:30px 22px}}
+.bk{text-decoration:none;color:var(--tx);text-align:center;display:block;-webkit-tap-highlight-color:transparent}
+.circ{aspect-ratio:1;border-radius:50%;background:var(--circ);display:grid;place-items:center;border:1px solid transparent;transition:border-color .15s}.bk:active .circ,.bk:hover .circ{border-color:var(--ac)}
+.circ svg{width:62%;height:62%}.bk b{display:block;margin-top:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}.bk .s{display:block;margin-top:2px}
+.bk.has .s{color:var(--ac)}
+.back{display:inline-block;color:var(--ac);text-decoration:none;margin:4px 0}
+.sheet{background:#fff;color:#000;border:1px solid var(--ln);padding:22px;border-radius:6px;max-width:210mm;margin:12px auto}.sheet h2{margin:0;font-size:26px;letter-spacing:.04em}.sheet h4{margin:18px 0 6px;font-size:13px;letter-spacing:.12em;border-bottom:1.5px solid #000;padding-bottom:3px}
+.kr{display:flex;gap:10px;align-items:center;padding:5px 0;font-size:15px}.bx{width:15px;height:15px;border:1.6px solid #000;flex:none}.kr em{margin-left:auto;font-style:normal;font-size:11px;letter-spacing:.08em;border:1px solid #000;padding:1px 6px}.kr em.m{background:#000;color:#fff}
+.pg{display:none}
+@media print{body{background:#fff;padding:0}.tabs,.noprint{display:none!important}#app{max-width:none;padding:0}.sheet{border:0;padding:0;margin:0;max-width:none}.cat{break-inside:avoid}@page{size:A4;margin:16mm}.pg{display:block;text-align:center;font-size:11px;margin-top:14px}}
 </style></head><body><div id="app"></div><nav class="tabs" id="tabs"></nav>
 <script>
-const K='gearstore.v1',TERMS='2026-10-v1',$=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,9);
-const CATS=['Clothing','Footwear','Equipment','Sleeping','Technical','Cooking and camp','First aid','Toiletries','Electronics','Other'];
-let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}S=S||{terms:'',gear:[],trips:[]};
-const save=()=>localStorage.setItem(K,JSON.stringify(S));
+const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,9),now=()=>new Date().toISOString();
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TERMS='2026-10-v1';
+const CATS=['Shells','Down','Fleece','Base Layers','Gloves','Hats','Footwear','Bags','Tents','Sleeping','Cooking','Hydration','First Aid','Navigation','Equipment','Other'];
+const slug=c=>c.toLowerCase().replace(/ /g,'-'),bySlug=s=>CATS.find(c=>slug(c)==s);
+const norm=s=>String(s).toLowerCase().replace(/[^a-z]/g,'').replace(/s$/,'');
+const CMAP=Object.fromEntries(CATS.map(c=>[norm(c),c]));
+function guess(t){t=String(t).toLowerCase();const h=r=>r.test(t);
+return h(/sleeping|bivi|liner|quilt/)?'Sleeping':h(/\bdown\b|puffa|puffer|insulated/)?'Down':h(/shell|waterproof|gore-?tex|rain/)?'Shells':h(/fleece/)?'Fleece':h(/base ?layer|thermal|merino/)?'Base Layers':h(/glove|mitt/)?'Gloves':h(/\bhat\b|beanie|\bcap\b|buff|balaclava/)?'Hats':h(/boot|shoe|sock|gaiter|trainer/)?'Footwear':h(/tent|tarp|bivvy/)?'Tents':h(/stove|\bpot\b|cook|\bmug\b/)?'Cooking':h(/bottle|bladder|hydration|flask/)?'Hydration':h(/first aid|plaster|blister/)?'First Aid':h(/gps|compass|\bmap\b|navigation/)?'Navigation':h(/ice axe|crampon|harness|helmet|rope|\baxe\b/)?'Equipment':h(/rucksack|backpack|duffle|hold-?all|\bpack\b|\bbag\b/)?'Bags':'Other'}
+
+/* ---------- storage layer (swap this for a cloud store later) ---------- */
+const Store={K:'gearstore.v2',OLD:'gearstore.v1',
+load(){let d=null;try{d=JSON.parse(localStorage.getItem(this.K))}catch(e){}if(d&&d.v==2)return d;
+try{const o=JSON.parse(localStorage.getItem(this.OLD));if(o)return this.migrate(o)}catch(e){}
+return{v:2,inventory:[],trips:[],settings:{terms:'',termsDate:''}}},
+migrate(o){const t=now();const d={v:2,inventory:(o.gear||[]).map(g=>({id:g.id,model:g.name,brand:'',category:guess(g.name),g:g.g||null,created_at:t,updated_at:t})),trips:(o.trips||[]),settings:{terms:o.terms||'',termsDate:o.termsDate||''}};localStorage.setItem(this.K,JSON.stringify(d));return d},
+save(d){localStorage.setItem(this.K,JSON.stringify(d))}};
+let S=Store.load();const save=()=>Store.save(S);
+const nm=i=>((i.brand?i.brand+' ':'')+i.model).trim();
+
+/* ---------- icons ---------- */
+const jk=(c,x)=>`<path d="M22 8l-14 6 4 22 7-2v22h26V34l7 2 4-22-14-6c-2 6-14 6-16 0z" fill="${c}"/><path d="M32 14v44" stroke="#1f3354" stroke-width="1.6"/>${x||''}`;
+const IC={
+'shells':jk('#2f7fd0','<path d="M18 46h5M41 46h5" stroke="#1f3354" stroke-width="2"/>'),
+'down':jk('#2b3140','<path d="M17 24h30M17 34h30M17 44h30" stroke="#59627a" stroke-width="2"/><path d="M18 50v4M46 50v4" stroke="#ec7a2c" stroke-width="2.4"/>'),
+'fleece':jk('#4d6b3a','<rect x="36" y="38" width="9" height="7" rx="2" fill="#3c542d"/>'),
+'base-layers':'<path d="M22 8h20l15 11-5 14-6-3v26H18V30l-6 3-5-14z" fill="#efe6d2" stroke="#cbbf9f" stroke-width="1.5"/>',
+'gloves':'<g fill="#2b3140"><path d="M10 54V34l-3-8 4-1 3 6V14a2 2 0 014 0v14V11a2 2 0 014 0v17V14a2 2 0 014 0v22l3-4 3 2-6 14v10z"/><path transform="translate(26 0)" d="M10 54V34l-3-8 4-1 3 6V14a2 2 0 014 0v14V11a2 2 0 014 0v17V14a2 2 0 014 0v22l3-4 3 2-6 14v10z"/></g>',
+'hats':'<path d="M14 40a18 18 0 0136 0z" fill="#2a5ea8"/><rect x="12" y="39" width="40" height="11" rx="3" fill="#224d8c"/><path d="M24 22v17M32 19v20M40 22v17" stroke="#4a7fc4" stroke-width="1.6"/>',
+'footwear':'<path d="M14 10h15v17l19 8c5 2 8 5 8 10v5H10z" fill="#6b5a43"/><rect x="10" y="48" width="46" height="6" rx="3" fill="#8b8f93"/><path d="M29 24l8 4M27 30l9 4" stroke="#ec7a2c" stroke-width="2.2"/>',
+'bags':'<rect x="15" y="8" width="34" height="48" rx="13" fill="#2a6a93"/><rect x="21" y="34" width="22" height="16" rx="4" fill="#1f5273"/><path d="M24 8v-2h16v2M12 22v22M52 22v22" stroke="#1f3354" stroke-width="2.4" stroke-linecap="round"/>',
+'tents':'<path d="M5 52L32 11l27 41z" fill="#5d7a3d"/><path d="M32 11l-10 41h20z" fill="#3f5a28"/><path d="M5 52l27-41M59 52L32 11" stroke="#ec7a2c" stroke-width="1.6" fill="none"/>',
+'sleeping':'<rect x="20" y="5" width="24" height="54" rx="12" fill="#2f7fd0"/><path d="M22 20h20M22 32h20M22 44h20" stroke="#1f5fa8" stroke-width="2"/>',
+'cooking':'<rect x="14" y="10" width="36" height="20" rx="3" fill="#3d424d"/><rect x="50" y="15" width="10" height="4" rx="2" fill="#ec7a2c"/><path d="M24 32h16l-4 6h-8z" fill="#59627a"/><rect x="23" y="38" width="18" height="18" rx="4" fill="#ec7a2c"/>',
+'hydration':'<rect x="22" y="5" width="16" height="9" rx="2" fill="#2b3140"/><rect x="21" y="14" width="22" height="46" rx="7" fill="#3b86a8"/><path d="M28 36l4-6 4 6z" fill="#fff"/>',
+'first-aid':'<rect x="8" y="16" width="48" height="36" rx="7" fill="#d8392b"/><path d="M26 22h12v10h10v10H38v10H26V42H16V32h10z" fill="#fff" transform="translate(0 -4) scale(1 .95) translate(0 3)"/><path d="M24 16v-4h16v4" stroke="#a82b20" stroke-width="3" fill="none"/>',
+'navigation':'<rect x="18" y="4" width="28" height="56" rx="7" fill="#ec7a2c"/><rect x="22" y="12" width="20" height="26" rx="3" fill="#cfe0d4"/><path d="M24 30c6-8 10-2 16-10" stroke="#6f9a7e" stroke-width="1.6" fill="none"/><circle cx="32" cy="48" r="4" fill="#2b3140"/>',
+'equipment':'<path d="M32 14v42" stroke="#1f3354" stroke-width="4" stroke-linecap="round"/><path d="M10 20c10-10 34-10 44 0l-7 2c-8-5-22-5-30 0z" fill="#2b3140"/><path d="M32 38v14" stroke="#ec7a2c" stroke-width="6" stroke-linecap="round"/><path d="M32 56l-3-2h6z" fill="#1f3354"/>',
+'other':'<rect x="8" y="12" width="48" height="16" rx="7" fill="#2b3140"/><rect x="36" y="15" width="16" height="10" rx="4" fill="#cdd5dd"/><rect x="22" y="34" width="20" height="24" rx="9" fill="none" stroke="#7f8896" stroke-width="4"/><path d="M22 46h20" stroke="#ec7a2c" stroke-width="4"/>'};
+const svg=c=>`<svg viewBox="0 0 64 64" aria-hidden="true">${IC[slug(c)]}</svg>`;
+
+/* ---------- trip logic (unchanged behaviour) ---------- */
 const STOP=new Set('a an the and or for with of to in on your you be that must can is are at as pair set thin thick warm light lightweight heavyweight strong small smaller good spare extra sturdy'.split(' '));
 const tok=t=>new Set(String(t).toLowerCase().split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(w=>w.length>3&&w.endsWith('s')?w.slice(0,-1):w));
-const hit=(g,r)=>{const gt=tok(g.name);return r.alts.some(a=>{const w=tok(a);if(!w.size)return 0;let n=0;w.forEach(x=>gt.has(x)&&n++);return n/w.size>=.6||(w.size==1&&n==1)})};
+const SYN={Shells:'waterproof jacket shell',Down:'insulated jacket down puffa synthetic',Fleece:'fleece',"Base Layers":'base layer thermal',Gloves:'glove mitt',Hats:'hat',Footwear:'boot walking hiking',Bags:'rucksack backpack day pack duffle hold-all',Tents:'tent',Sleeping:'sleeping bag',Cooking:'stove cooking',Hydration:'water bottle bladder',"First Aid":'first aid kit',Navigation:'map compass gps'};
+const hit=(g,r)=>{const gt=tok(nm(g)+' '+(SYN[g.category]||''));return r.alts.some(a=>{const w=tok(a);if(!w.size)return 0;let n=0;w.forEach(x=>gt.has(x)&&n++);return n/w.size>=.6||(w.size==1&&n==1)})};
 const kg=g=>(g||0)/1000,fmt=n=>n.toFixed(1)+' kg';
-const FT='<p class="ft">Suggestions only. Always check the organiser\'s own list and don\'t rely on this app for your safety.</p>';
-function guess(t){t=t.toLowerCase();const h=a=>a.some(x=>t.includes(x));return h(['crampon','ice axe','harness','helmet','rope'])?'Technical':h(['boot','shoe','sock','gaiter','trainer'])?'Footwear':h(['sleeping','bivi','liner'])?'Sleeping':h(['stove','tent','tarp'])?'Cooking and camp':h(['first aid','plaster','blister'])?'First aid':h(['sunscreen','toothbrush','towel','wipes'])?'Toiletries':h(['torch','battery','charger','camera','power bank'])?'Electronics':h(['jacket','trouser','base layer','fleece','glove','hat','buff','balaclava','shirt','puffa','shell','mitt'])?'Clothing':h(['rucksack','backpack','duffle','pack','bottle','pole','dry bag'])?'Equipment':'Other'}
+const FT='<p class="ft">Suggestions only. Always check the organiser\'s own list and don\'t rely on this app for your safety. Your data is stored only in this browser on this device; it is not backed up or synced.</p>';
 function alts(t){const n=t.replace(/\([^)]*\)/g,'').trim();if(n.includes(' / ')){const p=n.split(' / ').map(s=>s.trim()).filter(Boolean);if(p.length>1)return p}const o=n.split(' or ');if(o.length==2&&o.every(s=>s.split(' ').length<=2))return o;return[n||t]}
 function parseList(text){const H={DOCUMENTS:'doc',EQUIPMENT:'Equipment',CLOTHING:'Clothing',FOOTWEAR:'Footwear',TOILETRIES:'Toiletries','PERSONAL FIRST AID KIT':'First aid','FIRST AID':'First aid'};let cat=null,buf=[],out=[],seen=new Set();
 for(const l of text.replace(/\u00a0/g,' ').split('\n').map(s=>s.trim()).filter(Boolean)){const u=l.toUpperCase();if(u=='SUSTAINABLE PACKING')break;if(H[u]){cat=H[u];buf=[];continue}
@@ -59,78 +99,109 @@ a('Walking boots','Footwear','essential',['Walking boots','Hiking boots','Mounta
 a('Rucksack','Equipment','essential',['Rucksack','Day pack','Backpack']);a('Head torch','Equipment',days>1||season=='winter'?'essential':'recommended');a('Water bottle','Equipment','essential',['Water bottle','Hydration bladder']);
 a('Sunglasses','Equipment','essential');a('Map and compass','Equipment','essential');a('Trekking poles','Equipment','recommended');a('First aid kit','First aid','essential');a('Sunscreen','Toiletries','essential');
 if(days>1){a('Sleeping bag','Sleeping','essential');a('Dry bags','Equipment','recommended');a('Duffle bag','Equipment',act=='trekking'?'essential':'recommended',['Duffle bag','Hold-all'])}
-if(act=='mountaineering'||(season=='winter'&&act!='hillwalking')){a('Crampons','Technical','essential');a('Ice axe','Technical','essential');a('Helmet','Technical','essential')}
+if(act=='mountaineering'||(season=='winter'&&act!='hillwalking')){a('Crampons','Equipment','essential');a('Ice axe','Equipment','essential');a('Helmet','Equipment','essential')}
 return L}
 const T=id=>S.trips.find(t=>t.id==id);
-const ev=t=>t.reqs.filter(r=>!r.doc&&!r.rem).map(r=>{const g=S.gear.find(x=>hit(x,r));const st=g||(t.cov||[]).includes(r.id)?'ok':(t.plan||[]).includes(r.id)?'plan':'miss';return{r,st,g}});
+const ev=t=>t.reqs.filter(r=>!r.doc&&!r.rem).map(r=>{const g=S.inventory.find(x=>hit(x,r));const st=g||(t.cov||[]).includes(r.id)?'ok':(t.plan||[]).includes(r.id)?'plan':'miss';return{r,st,g}});
 const dayRe=/waterproof jacket|shell|bottle|torch|sunglasses|snack|camera|pole|sunscreen|sun hat|cap|glove|buff/;
-function pack(t){t.as=t.as||{};ev(t).forEach(o=>{if(o.g&&!t.as[o.g.id])t.as[o.g.id]=t.days<=1?'p':/boot/i.test(o.g.name)?'w':dayRe.test(o.g.name.toLowerCase())?'p':'d'})}
-const inBag=(t,c)=>S.gear.filter(g=>t.as&&t.as[g.id]==c);const wt=(t,c)=>inBag(t,c).reduce((s,g)=>s+kg(g.g),0);
-let bag='d',cur=null,mode='act';
-const BN={d:'Duffle',p:'Day pack',w:'Worn'};
-function go(h){location.hash=h}
-function view(){const h=location.hash.slice(2).split('/'),p=h[0]||'wall';let html='';
-if(S.terms!=TERMS)return terms();
-$('#tabs').innerHTML=`<a href="#/wall" class="${p=='wall'||p=='item'?'on':''}">Gear wall</a><a href="#/gear" class="${p=='gear'||p=='add'||p=='import'?'on':''}">Gear Store</a><a href="#/trips" class="${p=='trips'||p=='trip'||p=='new'?'on':''}">Trips</a>`;
-if(p=='wall')html=wallV();else if(p=='item')html=itemV(h[1]);else if(p=='gear')html=gearV();else if(p=='add')html=addV(decodeURIComponent(h[1]||''));else if(p=='import')html=impV();else if(p=='trips')html=tripsV();else if(p=='new')html=newV();else if(p=='trip'){cur=h[1];html=tripV()}
+function pack(t){t.as=t.as||{};ev(t).forEach(o=>{if(o.g&&!t.as[o.g.id])t.as[o.g.id]=t.days<=1?'p':/boot/i.test(nm(o.g))?'w':dayRe.test(nm(o.g).toLowerCase())?'p':'d'})}
+const inBag=(t,c)=>S.inventory.filter(g=>t.as&&t.as[g.id]==c);const wt=(t,c)=>inBag(t,c).reduce((s,g)=>s+kg(g.g),0);
+let bag='d',cur=null,mode='act',IMP=null;const BN={d:'Duffle',p:'Day pack',w:'Worn'};
+const fd=(a,b)=>{if(!a)return'';const f=(d,y)=>new Date(d+'T12:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:y?'numeric':undefined}),A=new Date(a+'T12:00'),B=b&&new Date(b+'T12:00');
+if(!b||b==a)return f(a,1);if(A.getMonth()==B.getMonth()&&A.getFullYear()==B.getFullYear())return A.getDate()+'–'+f(b,1);return f(a)+' – '+f(b,1)};
+
+/* ---------- views ---------- */
+const go=h=>location.hash=h;
+function view(){const h=location.hash.slice(2).split('/'),p=h[0]||'wall';
+if(S.settings.terms!=TERMS)return terms();
+const tab=x=>['wall','cat','item','add'].includes(p)?x=='g':['trips','trip','new','kit'].includes(p)?x=='t':x=='s';
+$('#tabs').innerHTML=`<a href="#/wall" class="${tab('g')?'on':''}">Gear</a><a href="#/trips" class="${tab('t')?'on':''}">Trips</a><a href="#/settings" class="${tab('s')?'on':''}">Settings</a>`;
+$('#app').className=p=='wall'?'wide':'';
+let html='';
+if(p=='wall')html=wallV();else if(p=='cat')html=catV(h[1]);else if(p=='item')html=itemV(h[1]);else if(p=='add')html=itemV(null,h[1]);else if(p=='settings')html=setV();else if(p=='import'){IMP=null;html=impV()}
+else if(p=='trips')html=tripsV();else if(p=='new')html=newV();else if(p=='trip'){cur=h[1];html=tripV()}else if(p=='kit'){cur=h[1];html=kitV()}else html=wallV();
 $('#app').innerHTML=html;window.scrollTo(0,0)}
 function terms(){$('#tabs').innerHTML='';$('#app').innerHTML=`<h1 style="justify-content:center;margin-top:24px">Before you start</h1><div class="c">${[['Suggestions, not instructions','Kit lists, gaps and weights are suggestions to help you plan. They can be incomplete or wrong.'],['Not a safety tool','Don\'t rely on this app for your safety. It doesn\'t replace training, experience or the advice of a guide.'],['Check the real requirements','Always confirm against the organiser\'s own list, the forecast, local conditions and official advice.'],['The decisions are yours','You are responsible for what you pack and do. We take no liability for loss, injury or damage arising from using the app.']].map(x=>`<div class="r"><div><b>${x[0]}</b><div class="s" style="font-size:14px">${x[1]}</div></div></div>`).join('')}</div>
-<label class="r c" style="margin-top:12px;gap:12px"><input type="checkbox" id="ag" style="width:22px;margin:0" onchange="$('#go').disabled=!this.checked"><span>I've read and understand this, and I accept the full terms.</span></label>
+<label class="r c" style="margin-top:12px;gap:12px"><input type="checkbox" style="width:22px;margin:0" onchange="$('#go').disabled=!this.checked"><span>I've read and understand this, and I accept the full terms.</span></label>
 <p class="s">We save the date and version you accepted on this device.</p><button class="p big" id="go" disabled data-a="accept">Continue</button>`}
-const P={jk:'M9 3L3 6l2 5 3-1v11h8V10l3 1 2-5-6-3c-1 2-5 2-6 0zM12 5v16',tr:'M7 3h10l1 18h-4l-2-10-2 10H6z',gl:'M8 21v-6L6 11V8l2 1V4a1 1 0 012 0v4V3a1 1 0 012 0v5V4a1 1 0 012 0v5l2-1v3l-2 4v6z',ht:'M5 15a7 7 0 0114 0zM3 15h18v3H3z',bl:'M8 3L3 6l2 5 3-1v11h8V10l3 1 2-5-5-3c-1 2-5 2-6 0z',mc:'M12 7a2 2 0 10-2-2M12 7v3l9 6H3z',bt:'M7 3h6v8l6 3v5H4v-3l3-2z',sk:'M8 3h7v9l4 4a3 3 0 01-3 4H9a4 4 0 01-4-4c0-3 3-3 3-6z',ax:'M12 3v17M5 8c3-4 11-4 14 0M12 21l-1.5-3h3z',fa:'M9 3h6v6h6v6h-6v6H9v-6H3V9h6z',fire:'M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-3 2-4 3-6 1 2 2 2 2-4z',tent:'M2 20L12 4l10 16zM12 4v16',box:'M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10'};
-const SL=[{id:'jk',g:'c',l:'Jackets',p:[P.jk],f:/jacket|shell|puffa|fleece|gilet/},{id:'tr',g:'c',l:'Trousers',p:[P.tr],f:/trouser|pants|shorts|tights/},{id:'gl',g:'c',l:'Gloves',p:[P.gl],f:/glove|mitt/},{id:'ht',g:'c',l:'Hats',p:[P.ht],f:/\bhat\b|\bcap\b|buff|balaclava|beanie/},{id:'bl',g:'c',l:'Base layers',p:[P.bl],f:/base layer|thermal|shirt|\btop\b/},{id:'mc',g:'c',l:'More clothing',p:[P.mc],f:(g)=>g.cat=='Clothing'},
-{id:'sk',g:'f',l:'Socks, gaiters',p:[P.sk],f:/sock|gaiter/},{id:'bt',g:'f',l:'Boots, shoes',p:[P.bt],f:(g)=>g.cat=='Footwear'},
-{id:'ax',g:'k',l:'Equipment',p:[P.ax],f:(g)=>['Equipment','Technical'].includes(g.cat)},{id:'fa',g:'k',tub:1,l:'First aid',p:[P.fa],f:(g)=>g.cat=='First aid'},{id:'cp',g:'k',tub:1,l:'Camp and cooking',p:[P.fire,P.tent],f:(g)=>['Cooking and camp','Sleeping'].includes(g.cat)},{id:'ot',g:'k',tub:1,l:'Everything else',p:[P.box],f:()=>true}];
-const slotOf=g=>{const n=g.name.toLowerCase();return SL.find(s=>typeof s.f=='function'?s.f(g,n):s.f.test(n))};
-const sv=(p,sm)=>`<svg viewBox="0 0 24 24" ${sm?'style="width:34px;height:34px"':''}><path d="${p}"/></svg>`;
-let ws=null;
-function wallV(){const by={};SL.forEach(s=>by[s.id]=[]);S.gear.forEach(g=>by[slotOf(g).id].push(g));
-const t0=S.trips[0],miss=t0?ev(t0).filter(o=>o.st=='miss'&&o.r.tier=='essential'):[],tw=S.gear.reduce((a,g)=>a+kg(g.g),0);
-const cell=s=>{const n=by[s.id].length,gap=!n&&!s.tub&&!['ax','mc'].includes(s.id)&&miss.some(o=>{const x=o.r.alts.join(' ').toLowerCase();return typeof s.f=='function'?0:s.f.test(x)}),st=n?'own':gap?'gap':'empty';
-return `<div class="slot ${st} ${s.tub?'tub':''} ${ws==s.id?'sel':''}" data-a="slot" data-id="${s.id}"><i class="hook"></i>${s.p.map(p=>sv(p,s.p.length>1)).join('')}<b>${s.l}</b><span class="s">${n?n+(n==1?' item':' items'):gap?'Gap':'Empty'}</span></div>`};
-const sec=(g,t,c)=>`<h3>${t}</h3><div class="wall"><div class="wg ${c||''}">${SL.filter(s=>s.g==g).map(cell).join('')}</div></div>`;
-const open=SL.find(s=>s.id==ws),oi=open?by[open.id]:[];
-return `<h1>Gear wall<button class="p" data-a="go" data-h="/add">Add gear</button></h1><div class="s" style="margin:-6px 0 4px">${S.gear.length} ${S.gear.length==1?'item':'items'} · ${fmt(tw)}</div>`+
-(miss.length?`<div class="warn" style="margin-top:10px">${miss.length} essential ${miss.length==1?'gap':'gaps'} for <a href="#/trip/${t0.id}" style="color:inherit">${esc(t0.name)}</a>. Filled amber icons show where.</div>`:'')+
-sec('c','Clothing')+sec('f','Footwear')+sec('k','Kit','k')+
-(open?`<h3>${open.l}</h3><div class="c">${oi.length?oi.map(g=>`<div class="r" data-a="go" data-h="/item/${g.id}"><div>${esc(g.name)}<div class="s">${g.cat}</div></div><span class="s">${g.g?fmt(kg(g.g)):'no weight'}</span></div>`).join(''):'<div class="r s">Nothing here yet</div>'}</div><button class="big" data-a="go" data-h="/add">Add gear</button>`:'<p class="s" style="text-align:center">Tap a hook or tub to see what\'s in it.</p>')+FT}
-function itemV(id){const g=S.gear.find(x=>x.id==id);if(!g)return wallV();return `<h1>Edit gear</h1><div class="c" style="padding:12px"><label class="s">Name</label><input id="n" value="${esc(g.name)}"><label class="s">Type</label><select id="c">${CATS.map(c=>`<option ${c==g.cat?'selected':''}>${c}</option>`).join('')}</select><label class="s">Weight in grams</label><input id="g" type="number" inputmode="numeric" value="${g.g||''}"></div><button class="p big" data-a="upg" data-id="${id}">Save</button><button class="big" data-a="delg2" data-id="${id}">Delete</button><button class="big" data-a="back">Cancel</button>`}
-function gearV(){const by=c=>S.gear.filter(g=>g.cat==c);
-return `<h1>Gear Store<span><button data-a="go" data-h="/import">Import</button><button class="p" data-a="go" data-h="/add">Add gear</button></span></h1>`+
-(S.gear.length?CATS.filter(c=>by(c).length).map(c=>`<h3>${c}</h3><div class="c">${by(c).map(g=>`<div class="r"><div>${esc(g.name)}${g.g?'':'<div class="s">No weight yet</div>'}</div><span class="s">${g.g?fmt(kg(g.g)):''}</span><button class="l" data-a="delg" data-id="${g.id}">Delete</button></div>`).join('')}</div>`).join(''):
-`<div class="empty"><b>Your Gear Store is empty</b><p>Bring in the gear you already own, or add it one item at a time.</p><button class="p" data-a="go" data-h="/import">Import a list</button> <button data-a="go" data-h="/add">Add one item</button></div>`)+
-`<h3>Backup</h3><div class="c" style="padding:12px"><p class="s" style="margin-top:0">Your data lives only on this device. Copy a backup now and then.</p><button data-a="bk">Copy backup</button><textarea id="rs" placeholder="Paste a backup here to restore" style="min-height:70px"></textarea><button data-a="rest">Restore</button></div>`+FT}
-function addV(n){return `<h1>Add gear</h1><div class="c" style="padding:12px"><label class="s">Name (brand and model)</label><input id="n" value="${esc(n)}"><label class="s">Type</label><select id="c">${CATS.map(c=>`<option ${c==guess(n)?'selected':''}>${c}</option>`).join('')}</select><label class="s">Weight in grams (optional)</label><input id="g" type="number" inputmode="numeric"></div><button class="p big" data-a="addg">Save</button><button class="big" data-a="back">Cancel</button>`}
-function impV(){return `<h1>Import gear</h1><p class="s">One item per line. Add a weight in grams after a comma, for example: Down jacket, 600</p><textarea id="t" placeholder="Waterproof jacket, 450&#10;Head torch, 90&#10;Merino base layer"></textarea><button class="p big" data-a="imp">Add to Gear Store</button><button class="big" data-a="back">Cancel</button>`+FT}
-function tripsV(){return `<h1>Trips<button class="p" data-a="go" data-h="/new">New trip</button></h1>`+(S.trips.length?`<div class="c">${S.trips.map(t=>{const e=ev(t).filter(o=>o.r.tier=='essential'),m=e.filter(o=>o.st=='miss').length;pack(t);return `<a class="r" href="#/trip/${t.id}" style="text-decoration:none;color:inherit"><div><b>${esc(t.name)}</b><div class="s">${t.days} ${t.days==1?'day':'days'}</div><div class="${m?'w':'o'}" style="font-size:14px">${m?m+' essential '+(m==1?'item':'items')+' missing':'No gaps'}</div></div><span class="s">${t.maxKg?fmt(wt(t,'d'))+' / '+t.maxKg:''}</span></a>`}).join('')}</div>`:`<div class="empty"><b>No trips yet</b><p>Paste an event kit list or build one from an activity.</p><button class="p" data-a="go" data-h="/new">New trip</button></div>`)+FT}
-function newV(){const A=mode=='act';return `<h1>New trip</h1><div class="seg"><button class="${A?'on':''}" data-a="mode" data-m="act">From activity</button><button class="${A?'':'on'}" data-a="mode" data-m="list">Paste kit list</button></div><div class="c" style="padding:12px"><label class="s">Name</label><input id="n" placeholder="Trip name">`+
+function wallV(){const n=c=>S.inventory.filter(i=>i.category==c).length;
+return `<h1>Gear Wall<button class="p" data-a="go" data-h="/add">Add gear</button></h1><div class="s">${S.inventory.length} ${S.inventory.length==1?'item':'items'} owned</div>
+<div class="grid">${CATS.map(c=>`<a class="bk ${n(c)?'has':''}" href="#/cat/${slug(c)}"><div class="circ">${svg(c)}</div><b>${c}</b><span class="s">${n(c)?n(c)+(n(c)==1?' item':' items'):'Empty'}</span></a>`).join('')}</div>`+
+(S.inventory.length?'':`<div class="empty"><b>Your Gear Wall is empty</b><p>Import a CSV of what you own, or add items one at a time.</p><button class="p" data-a="go" data-h="/import">Import CSV</button> <button data-a="go" data-h="/add">Add one item</button></div>`)+FT}
+function catV(s){const c=bySlug(s);if(!c)return wallV();const l=S.inventory.filter(i=>i.category==c).sort((a,b)=>nm(a).localeCompare(nm(b)));
+return `<a class="back" href="#/wall">‹ Gear Wall</a><h1><span style="gap:12px"><span style="width:44px">${svg(c)}</span>${c}</span><button class="p" data-a="go" data-h="/add/${s}">Add</button></h1>`+
+(l.length?`<div class="c">${l.map(i=>`<div class="r" data-a="go" data-h="/item/${i.id}" style="cursor:pointer"><div><div class="s">${esc(i.brand)||'No brand'}</div><b style="font-weight:600">${esc(i.model)}</b><div class="s">${i.category}</div></div><span class="s">${i.g?fmt(kg(i.g)):''}</span><span class="s">›</span></div>`).join('')}</div>`:`<div class="empty"><b>Nothing in ${c} yet</b><p>Add an item or import a CSV.</p></div>`)+FT}
+function itemV(id,cs){const i=id?S.inventory.find(x=>x.id==id):null;if(id&&!i)return wallV();const cat=i?i.category:(bySlug(cs)||'Other');
+return `<a class="back" href="#/${i?'cat/'+slug(i.category):cs?'cat/'+cs:'wall'}">‹ Back</a><h1>${i?'Edit gear':'Add gear'}</h1><div class="c" style="padding:12px"><label class="s">Brand</label><input id="b" value="${esc(i?.brand)}"><label class="s">Model</label><input id="m" value="${esc(i?.model)}"><label class="s">Category</label><select id="c">${CATS.map(c=>`<option ${c==cat?'selected':''}>${c}</option>`).join('')}</select><label class="s">Weight in grams (optional)</label><input id="g" type="number" inputmode="numeric" value="${i?.g||''}"></div>
+<button class="p big" data-a="saveg" data-id="${id||''}">Save</button>${i?`<button class="big" data-a="delg" data-id="${id}">Delete</button>`:''}<button class="big" data-a="back">Cancel</button>`}
+function setV(){return `<h1>Settings</h1><div class="c"><div class="r" data-a="go" data-h="/import" style="cursor:pointer"><div><b style="font-weight:600">Import CSV</b><div class="s">Columns: Model, Brand, Category</div></div><span class="s">›</span></div></div>
+<h3>Export / Backup</h3><div class="c" style="padding:12px"><p class="s" style="margin-top:0">Your data lives only in this browser on this device. It isn't synced or backed up. Copy a backup now and then.</p><button data-a="bk">Copy backup</button><textarea id="rs" placeholder="Paste a backup here to restore" style="min-height:70px"></textarea><button data-a="rest">Restore</button></div>`+FT}
+function impV(){if(IMP)return impR();return `<a class="back" href="#/settings">‹ Settings</a><h1>Import CSV</h1><p class="s">The first row must be exactly: <b>Model,Brand,Category</b>. Category must be one of the 16 Gear Wall categories.</p><div class="c" style="padding:12px"><input type="file" id="f" accept=".csv,text/csv"></div><p class="s">Nothing is imported until you confirm the preview.</p>`+FT}
+function csv(t){t=t.replace(/^\uFEFF/,'');const R=[];let r=[],f='',q=0;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=0}else f+=c}else if(c=='"')q=1;else if(c==','){r.push(f);f=''}else if(c=='\n'||c=='\r'){if(c=='\r'&&t[i+1]=='\n')i++;r.push(f);f='';R.push(r);r=[]}else f+=c}
+if(f!=''||r.length){r.push(f);R.push(r)}return R.filter(r=>r.some(x=>x.trim()))}
+function startImp(text){const R=csv(text),H=(R[0]||[]).map(x=>x.trim().toLowerCase()),ix=['model','brand','category'].map(k=>H.indexOf(k));
+if(ix.includes(-1)){IMP={bad:'Header row must contain exactly Model, Brand and Category. Found: '+esc((R[0]||[]).join(', ')||'nothing')};return}
+IMP={rows:R.slice(1).map((r,n)=>{const model=(r[ix[0]]||'').trim(),brand=(r[ix[1]]||'').trim(),raw=(r[ix[2]]||'').trim(),err=[];if(!model)err.push('Model is missing');if(!brand)err.push('Brand is missing');if(!raw)err.push('Category is missing');
+return{n:n+2,model,brand,raw,err,cat:CMAP[norm(raw)]||null}})}}
+function impR(){if(IMP.bad)return `<a class="back" href="#/import">‹ Back</a><h1>Import CSV</h1><div class="warn">${IMP.bad}</div><button class="big" data-a="go" data-h="/import">Choose another file</button>`;
+const R=IMP.rows,inv=R.filter(r=>r.err.length),fix=R.filter(r=>!r.err.length&&!r.cat),ok=R.filter(r=>!r.err.length&&r.cat&&r.cat!='-'),sk=R.filter(r=>r.cat=='-');
+return `<a class="back" href="#/import">‹ Back</a><h1>Preview</h1><div class="c" style="padding:12px"><b class="o">${ok.length} valid</b> · <b class="${inv.length?'b':''}">${inv.length} invalid</b> · <b class="${fix.length?'w':''}">${fix.length} need a category</b>${sk.length?` · ${sk.length} skipped`:''}</div>
+${fix.length?'<div class="warn" style="margin-top:8px">Some categories aren\'t recognised. Pick one for each, or skip the row.</div>':''}
+<div class="c" style="margin-top:8px">${R.map((r,i)=>`<div class="r"><div><b style="font-weight:600">${esc(r.brand)} ${esc(r.model)}</b><div class="s">Row ${r.n}${r.err.length?` · <span class="b">${r.err.join(', ')}</span>`:r.cat?` → <b>${r.cat=='-'?'Skipped':r.cat}</b>`:''}</div>${!r.err.length&&!r.cat?`<select data-ch="${i}"><option value="">Choose category… ("${esc(r.raw)}")</option>${CATS.map(c=>`<option>${c}</option>`).join('')}<option value="-">Skip this row</option></select>`:''}</div></div>`).join('')}</div>
+<button class="p big" data-a="doimp" ${fix.length||!ok.length?'disabled':''}>Import ${ok.length} ${ok.length==1?'item':'items'}</button>${inv.length?'<p class="s">Invalid rows will be left out.</p>':''}<button class="big" data-a="go" data-h="/settings">Cancel</button>`}
+function tripsV(){return `<h1>Trips<button class="p" data-a="go" data-h="/new">New trip</button></h1>`+(S.trips.length?`<div class="c">${S.trips.map(t=>{const e=ev(t).filter(o=>o.r.tier=='essential'),m=e.filter(o=>o.st=='miss').length;pack(t);return `<a class="r" href="#/trip/${t.id}" style="text-decoration:none;color:inherit"><div><b>${esc(t.name)}</b><div class="s">${[t.dest,fd(t.start,t.end)||t.days+(t.days==1?' day':' days')].filter(Boolean).map(esc).join(' · ')}</div><div class="${m?'w':'o'}" style="font-size:14px">${m?'⚠ '+m+' essential '+(m==1?'item':'items')+' missing':'✓ No gaps'}</div></div><span class="s">›</span></a>`}).join('')}</div>`:`<div class="empty"><b>No trips yet</b><p>Paste an event kit list or build one from an activity.</p><button class="p" data-a="go" data-h="/new">New trip</button></div>`)+FT}
+function newV(){const A=mode=='act';return `<h1>New trip</h1><div class="seg"><button class="${A?'on':''}" data-a="mode" data-m="act">From activity</button><button class="${A?'':'on'}" data-a="mode" data-m="list">Paste kit list</button></div><div class="c" style="padding:12px"><label class="s">Trip name</label><input id="n" placeholder="e.g. Kilimanjaro"><label class="s">Destination (optional)</label><input id="dst"><label class="s">Start date (optional)</label><input id="sd" type="date"><label class="s">End date (optional)</label><input id="ed" type="date">`+
 (A?`<label class="s">Activity</label><select id="a"><option>hillwalking</option><option selected>trekking</option><option>scrambling</option><option>mountaineering</option></select><label class="s">Season</label><select id="s"><option>spring</option><option>summer</option><option selected>autumn</option><option>winter</option></select>`:`<label class="s">Kit list text (copy it from the organiser's PDF)</label><textarea id="x"></textarea>`)+
 `<label class="s">Days</label><input id="d" type="number" value="${A?3:6}" min="1" max="30"></div><button class="p big" data-a="mk">Create trip</button><button class="big" data-a="back">Cancel</button>`+FT}
 function tripV(){const t=T(cur);if(!t)return tripsV();pack(t);save();const r=ev(t),miss=r.filter(o=>o.st=='miss'&&o.r.tier=='essential'),w=wt(t,bag),lim=bag=='d'?t.maxKg:null;
-const rows=(l,f)=>l.map(f).join('');const tick=(id,txt,sub)=>`<div class="r" data-a="tk" data-id="${id}"><span class="ck ${(t.pk||[]).includes(id)?'on':''}">${(t.pk||[]).includes(id)?'✓':''}</span><div>${txt}${sub?`<div class="s">${sub}</div>`:''}</div></div>`;
-const all=[...S.gear.filter(g=>t.as[g.id]).map(g=>g.id),...t.reqs.filter(x=>x.doc||x.rem||(t.plan||[]).includes(x.id)).map(x=>x.id)],pc=all.filter(i=>(t.pk||[]).includes(i)).length;
-return `<h1 style="font-size:20px"><a href="#/trips" style="text-decoration:none">‹</a> ${esc(t.name)}</h1><div class="seg"><button class="${bag=='d'?'on':''}" data-a="bag" data-b="d">Duffle</button><button class="${bag=='p'?'on':''}" data-a="bag" data-b="p">Day pack</button></div>
+const rows=(l,f)=>l.map(f).join('');const tick=(id,txt,sub)=>`<div class="r" data-a="tk" data-id="${id}" style="cursor:pointer"><span class="ck ${(t.pk||[]).includes(id)?'on':''}">${(t.pk||[]).includes(id)?'✓':''}</span><div>${txt}${sub?`<div class="s">${sub}</div>`:''}</div></div>`;
+const all=[...S.inventory.filter(g=>t.as[g.id]).map(g=>g.id),...t.reqs.filter(x=>x.doc||x.rem||(t.plan||[]).includes(x.id)).map(x=>x.id)],pc=all.filter(i=>(t.pk||[]).includes(i)).length;
+return `<a class="back" href="#/trips">‹ Trips</a><h1 style="font-size:22px">${esc(t.name)}</h1><div class="s" style="margin:-8px 0 8px">${[t.dest,fd(t.start,t.end)].filter(Boolean).map(esc).join(' · ')}</div><button class="p big" style="margin:0 0 6px" data-a="go" data-h="/kit/${t.id}">Export Kit List</button>
+<div class="seg"><button class="${bag=='d'?'on':''}" data-a="bag" data-b="d">Duffle</button><button class="${bag=='p'?'on':''}" data-a="bag" data-b="p">Day pack</button></div>
 <div class="c" style="padding:12px"><div style="font-size:28px;font-weight:700">${fmt(w)} <span class="s" style="font-weight:400">${lim?'of '+lim+' kg limit':bag=='p'?'carried each day, no limit set':''}</span></div>${lim?`<div class="bar"><i style="width:${Math.min(100,w/lim*100)}%;${w>lim?'background:var(--bad)':''}"></i></div><div class="s ${w>lim?'b':''}">${w>lim?'Over the limit by '+fmt(w-lim):fmt(lim-w)+' left'}</div>`:''}${inBag(t,bag).some(g=>!g.g)?'<div class="s">Some items have no weight yet, so the total may be low.</div>':''}</div>
-<h3>Missing essentials</h3>${miss.length?`<div class="warn">${miss.length} essential ${miss.length==1?'item':'items'} missing</div><div class="c">${rows(miss,o=>`<div class="r"><div>${esc(o.r.t)}<div class="s">${o.r.alts.length>1?'Any one counts · ':''}${o.r.cat}</div><button class="l" style="padding:0" data-a="plan" data-id="${o.r.id}">Hire or borrow</button><button class="l" data-a="have" data-id="${o.r.id}">I have this</button></div><button data-a="go" data-h="/add/${encodeURIComponent(o.r.alts[0])}">Add</button></div>`)}</div>`:'<div class="c r o">No essential gaps</div>'}
-<h3>In the ${BN[bag].toLowerCase()}</h3><div class="c">${inBag(t,bag).length?rows(inBag(t,bag),g=>{const wr=bag=='d'&&/jacket|shell|bottle|torch|sunglasses|snack|water/i.test(g.name);return `<div class="r"><div>${esc(g.name)}${wr?'<div class="s w">Needed on the trail, porters carry the duffle ahead</div>':''}</div><span class="s">${g.g?fmt(kg(g.g)):'—'}</span><button data-a="mv" data-id="${g.id}" data-to="${bag=='d'?'p':'d'}">To ${bag=='d'?'day pack':'duffle'}</button></div>`}):'<div class="r s">Nothing here</div>'}</div>
-<h3>Packing checklist · ${pc} of ${all.length} packed</h3><div class="c">${rows(S.gear.filter(g=>t.as[g.id]),g=>tick(g.id,esc(g.name),BN[t.as[g.id]]))}${rows(t.reqs.filter(x=>x.doc),x=>tick(x.id,esc(x.t),'Document'))}${rows(t.reqs.filter(x=>(t.plan||[]).includes(x.id)),x=>tick(x.id,esc(x.t),'Hire or borrow'))}${rows(t.reqs.filter(x=>x.rem),x=>tick(x.id,esc(x.t),'Ask a doctor or travel clinic'))}</div>
+<h3>Missing essentials</h3>${miss.length?`<div class="warn">⚠ ${miss.length} essential ${miss.length==1?'item':'items'} missing</div><div class="c">${rows(miss,o=>`<div class="r"><div>${esc(o.r.t)}<div class="s">${o.r.alts.length>1?'Any one counts · ':''}${guess(o.r.t)}</div><button class="l" style="padding:0" data-a="plan" data-id="${o.r.id}">Hire or borrow</button><button class="l" data-a="have" data-id="${o.r.id}">I have this</button></div><button data-a="go" data-h="/add/${slug(guess(o.r.alts[0]))}">Add</button></div>`)}</div>`:'<div class="c r o">✓ No essential gaps</div>'}
+<h3>In the ${BN[bag].toLowerCase()}</h3><div class="c">${inBag(t,bag).length?rows(inBag(t,bag),g=>{const wr=bag=='d'&&/jacket|shell|bottle|torch|sunglasses|snack|water/i.test(nm(g));return `<div class="r"><div>${esc(nm(g))}${wr?'<div class="s w">Needed on the trail, porters carry the duffle ahead</div>':''}</div><span class="s">${g.g?fmt(kg(g.g)):'—'}</span><button data-a="mv" data-id="${g.id}" data-to="${bag=='d'?'p':'d'}">To ${bag=='d'?'day pack':'duffle'}</button></div>`}):'<div class="r s">Nothing here</div>'}</div>
+<h3>Packing checklist · ${pc} of ${all.length} packed</h3><div class="c">${rows(S.inventory.filter(g=>t.as[g.id]),g=>tick(g.id,esc(nm(g)),BN[t.as[g.id]]))}${rows(t.reqs.filter(x=>x.doc),x=>tick(x.id,esc(x.t),'Document'))}${rows(t.reqs.filter(x=>(t.plan||[]).includes(x.id)),x=>tick(x.id,esc(x.t),'Hire or borrow'))}${rows(t.reqs.filter(x=>x.rem),x=>tick(x.id,esc(x.t),'Ask a doctor or travel clinic'))}</div>
 <button class="big" data-a="delt" data-id="${t.id}">Delete trip</button>`+FT}
+
+/* ---------- kit list ---------- */
+function kitData(t){pack(t);const out={};CATS.forEach(c=>out[c]=[]);
+ev(t).forEach(o=>{const g=o.g,c=g?g.category:guess(o.r.t),s=g?((t.pk||[]).includes(g.id)?'PACKED':'OWNED'):o.st=='ok'?'OWNED':o.st=='plan'?'HIRE/BORROW':'MISSING';out[c].push({t:g?nm(g):o.r.t,s})});
+t.reqs.filter(x=>x.doc).forEach(x=>out.Other.push({t:x.t,s:(t.pk||[]).includes(x.id)?'PACKED':'DOCUMENT'}));
+t.reqs.filter(x=>x.rem).forEach(x=>out.Other.push({t:x.t,s:(t.pk||[]).includes(x.id)?'PACKED':'ASK DOCTOR'}));
+return CATS.filter(c=>out[c].length).map(c=>[c,out[c]])}
+function kitV(){const t=T(cur);if(!t)return tripsV();const D=kitData(t),meta=[t.dest,fd(t.start,t.end)].filter(Boolean);
+return `<div class="noprint"><a class="back" href="#/trip/${t.id}">‹ ${esc(t.name)}</a><div class="seg"><button class="p" data-a="print">Print / Save PDF</button><button data-a="img">Save image</button></div><p class="s">Tip: in the print dialog choose “Save as PDF” for a PDF file.</p></div>
+<div class="sheet" id="sheet"><h2>${esc(t.name.toUpperCase())}</h2>${meta.map(m=>`<div>${esc(m)}</div>`).join('')}<h4 style="font-size:15px;margin-top:22px">KIT LIST</h4>
+${D.map(([c,l])=>`<div class="cat"><h4>${c.toUpperCase()}</h4>${l.map(i=>`<div class="kr"><span class="bx"></span><span>${esc(i.t)}</span><em class="${i.s=='MISSING'?'m':''}">${i.s}</em></div>`).join('')}</div>`).join('')}
+<div class="pg">Kit list · ${esc(t.name)}</div></div>`}
+function kitImg(){const t=T(cur),D=kitData(t),W=1240,P=80,L=[];
+L.push(['t',t.name.toUpperCase()]);[t.dest,fd(t.start,t.end)].filter(Boolean).forEach(m=>L.push(['m',m]));L.push(['g',0]);L.push(['k','KIT LIST']);
+D.forEach(([c,l])=>{L.push(['h',c.toUpperCase()]);l.forEach(i=>L.push(['i',i.t,i.s]))});
+const H=P*2+L.reduce((a,x)=>a+({t:64,m:40,g:20,k:60,h:64,i:44}[x[0]]),0),cv=document.createElement('canvas');cv.width=W;cv.height=Math.max(H,1754);const x=cv.getContext('2d');
+x.fillStyle='#fff';x.fillRect(0,0,W,cv.height);x.fillStyle='#000';x.textBaseline='top';let y=P;const F='-apple-system,Helvetica,Arial,sans-serif';
+L.forEach(l=>{if(l[0]=='t'){x.font='bold 54px '+F;x.fillText(l[1],P,y);y+=64}else if(l[0]=='m'){x.font='30px '+F;x.fillText(l[1],P,y);y+=40}else if(l[0]=='g')y+=20;else if(l[0]=='k'){x.font='bold 32px '+F;x.fillText(l[1],P,y+14);y+=60}
+else if(l[0]=='h'){y+=18;x.font='bold 24px '+F;x.fillText(l[1],P,y);x.fillRect(P,y+32,W-P*2,2);y+=46}
+else{x.lineWidth=3;x.strokeRect(P,y+6,24,24);x.font='28px '+F;x.fillText(l[1],P+44,y+4);x.font='bold 18px '+F;const w=x.measureText(l[2]).width;x.strokeRect(W-P-w-16,y+5,w+16,28);x.fillText(l[2],W-P-w-8,y+10);y+=44}});
+cv.toBlob(b=>{const f=new File([b],'kit-list.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{});else{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kit-list.png';a.click()}})}
+
+/* ---------- actions ---------- */
 const A={
-accept(){S.terms=TERMS;S.termsDate=new Date().toISOString();save();location.hash='/wall';view()},go(d){go(d.h)},back(){history.back()},bag(d){bag=d.b;view()},mode(d){mode=d.m;view()},
-delg(d){if(confirm('Delete this item?')){S.gear=S.gear.filter(g=>g.id!=d.id);save();view()}},
-addg(){const n=$('#n').value.trim();if(!n)return;S.gear.push({id:uid(),name:n,cat:$('#c').value,g:+$('#g').value||null});save();go('/gear')},
-imp(){$('#t').value.split('\n').map(s=>s.trim()).filter(Boolean).forEach(l=>{const m=l.replace(/^[-•*\d.)\s]+/,'').split(',');const n=m[0].trim();if(n)S.gear.push({id:uid(),name:n,cat:guess(n),g:+(m[1]||'').replace(/\D/g,'')||null})});save();go('/gear')},
+accept(){S.settings.terms=TERMS;S.settings.termsDate=now();save();location.hash='/wall';view()},go(d){go(d.h)},back(){history.back()},bag(d){bag=d.b;view()},mode(d){mode=d.m;view()},print(){window.print()},img(){kitImg()},
+saveg(d){const m=$('#m').value.trim();if(!m){alert('Model is required');return}const v={brand:$('#b').value.trim(),model:m,category:$('#c').value,g:+$('#g').value||null,updated_at:now()};
+if(d.id){Object.assign(S.inventory.find(x=>x.id==d.id),v)}else S.inventory.push({id:uid(),created_at:now(),...v});save();go('/cat/'+slug(v.category))},
+delg(d){if(confirm('Delete this item?')){const i=S.inventory.find(g=>g.id==d.id);S.inventory=S.inventory.filter(g=>g.id!=d.id);save();go('/cat/'+slug(i.category))}},
+doimp(){const t=now();IMP.rows.filter(r=>!r.err.length&&r.cat&&r.cat!='-').forEach(r=>S.inventory.push({id:uid(),model:r.model,brand:r.brand,category:r.cat,g:null,created_at:t,updated_at:t}));save();IMP=null;go('/wall');view()},
 mk(){const days=Math.max(1,+$('#d').value||1);let t;if(mode=='act'){const a=$('#a').value,s=$('#s').value;t={id:uid(),name:$('#n').value.trim()||`${a}, ${days} ${days==1?'day':'days'}, ${s}`,days,reqs:tmpl(a,days,s)}}else{const p=parseList($('#x').value);if(!p.reqs.length){alert('No rows found. Check you pasted the kit list text.');return}t={id:uid(),name:$('#n').value.trim()||'Kit list trip',days,reqs:p.reqs,maxKg:p.maxKg}}
-t.pk=[];t.plan=[];t.cov=[];S.trips.unshift(t);pack(t);save();go('/trip/'+t.id)},
-mv(d){T(cur).as[d.id]=d.to;save();view()},plan(d){const t=T(cur);t.plan.push(d.id);save();view()},have(d){const t=T(cur);t.cov.push(d.id);save();view()},
+t.dest=$('#dst').value.trim();t.start=$('#sd').value;t.end=$('#ed').value;t.created_at=now();t.pk=[];t.plan=[];t.cov=[];S.trips.unshift(t);pack(t);save();go('/trip/'+t.id)},
+mv(d){T(cur).as[d.id]=d.to;save();view()},plan(d){T(cur).plan.push(d.id);save();view()},have(d){T(cur).cov.push(d.id);save();view()},
 tk(d){const t=T(cur),i=t.pk.indexOf(d.id);i<0?t.pk.push(d.id):t.pk.splice(i,1);save();const y=scrollY;view();scrollTo(0,y)},
 delt(d){if(confirm('Delete this trip?')){S.trips=S.trips.filter(t=>t.id!=d.id);save();go('/trips')}},
-slot(d){ws=ws==d.id?null:d.id;const y=scrollY;view();scrollTo(0,y)},
-upg(d){const g=S.gear.find(x=>x.id==d.id),n=$('#n').value.trim();if(g&&n){g.name=n;g.cat=$('#c').value;g.g=+$('#g').value||null;save()}history.back()},
-delg2(d){if(confirm('Delete this item?')){S.gear=S.gear.filter(g=>g.id!=d.id);save();history.back()}},
 bk(){const j=JSON.stringify(S);(navigator.clipboard?navigator.clipboard.writeText(j):Promise.reject()).then(()=>alert('Backup copied')).catch(()=>{$('#rs').value=j;$('#rs').select();alert('Copy the text in the box')})},
-rest(){try{const o=JSON.parse($('#rs').value);if(!o.gear||!o.trips)throw 0;if(confirm('Replace everything on this device with the backup?')){S=o;save();view()}}catch(e){alert('That doesn\'t look like a backup')}}};
+rest(){try{let o=JSON.parse($('#rs').value);if(o.gear&&!o.inventory)o=Store.migrate(o);if(!o.inventory||!o.trips)throw 0;if(confirm('Replace everything on this device with the backup?')){S=o;S.v=2;S.settings=S.settings||{terms:'',termsDate:''};save();view()}}catch(e){alert('That doesn\'t look like a backup')}}};
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&A[b.dataset.a]){e.preventDefault();A[b.dataset.a](b.dataset)}});
+document.addEventListener('change',e=>{const t=e.target;if(t.id=='f'&&t.files[0]){t.files[0].text().then(x=>{startImp(x);$('#app').innerHTML=impR()})}
+else if(t.dataset.ch!==undefined){IMP.rows[+t.dataset.ch].cat=t.value||null;const y=scrollY;$('#app').innerHTML=impR();scrollTo(0,y)}});
 addEventListener('hashchange',view);view();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script></body></html>
