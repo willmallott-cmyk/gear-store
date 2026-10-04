@@ -1,6 +1,7 @@
-const CACHE='gearstore-shell-v18';
+const CACHE='gearstore-shell-v19';
 const CATS=['shells','down','fleece','base-layers','legwear','hats-and-gloves','footwear','bags','tents','sleeping','cooking','hydration','safety','navigation-and-lighting','equipment','other'];
-const SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.PNG',...CATS.map(c=>'icons/'+c+'.webp')];
+const TRIPIMG=['trip-duffle','trip-rucksack','person-full','person-head','person-torso','person-hands','person-legs','person-feet'];
+const SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.PNG',...CATS.map(c=>'icons/'+c+'.webp'),...TRIPIMG.map(c=>'icons/'+c+'.webp')];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.all(SHELL.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
