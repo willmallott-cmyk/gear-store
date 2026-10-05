@@ -1,4 +1,4 @@
-const CACHE='gearstore-shell-v26';
+const CACHE='gearstore-shell-v27';
 const CATS=['shells','down','fleece','base-layers','legwear','hats-and-gloves','footwear','bags','tents','sleeping','cooking','hydration','safety','navigation-and-lighting','equipment','other'];
 const TRIPIMG=['trip-duffle','trip-rucksack','worn-jacket'];
 const SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.PNG',...CATS.map(c=>'icons/'+c+'.webp'),...TRIPIMG.map(c=>'icons/'+c+'.webp')];
